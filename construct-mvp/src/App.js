@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { TextField, Button, FormControl, Typography } from '@mui/material';
 import './App.css';
 import Header from './components/Header';
-import Walls from './pages/Walls';
+import Frame from './pages/Frame';
+import Wall from './pages/Wall';
 import SidePanel from './components/SidePanel';
 
 // 2x4x8 Stud Price
@@ -111,12 +112,17 @@ function App() {
   const [wallLength, setWallLength] = useState(0);
   const [studCount, setStudCount] = useState(0);
   const [studCost, setStudCost] = useState(0);
-  const [showWalls, setShowWalls] = useState(true);
+  const [showFrame, setShowFrame] = useState(true);
+  const [showWall, setShowWall] = useState(false);
 
 
   const [submissions, setSubmissions] = useState([]);
 
-  const handleFormSubmit = (length, count, cost, quantity) => {
+  const handleFrameFormSubmit = (length, count, cost, quantity) => {
+    setSubmissions(prevSubmissions => [...prevSubmissions, { length, count, cost, quantity }]);
+  };
+
+  const handleWallFormSubmit = (length, count, cost, quantity) => {
     setSubmissions(prevSubmissions => [...prevSubmissions, { length, count, cost, quantity }]);
   };
 
@@ -128,9 +134,14 @@ function App() {
     setDrawerOpen(false);
   };
 
-  const handleToggle = () => {
-    setShowWalls(prevShowWalls => !prevShowWalls);
+  const handleFrameToggle = () => {
+    setShowFrame(prevShowFrame => !prevShowFrame);
   };
+
+  const handleWallToggle = () => {
+    setShowWall(prevShowWall => !prevShowWall);
+  };
+
 
   return (
     <div className="App">
@@ -139,10 +150,15 @@ function App() {
       <div style={{ display: 'inline-block' }}>
         <div style={{ display: 'block' }}>
           {/* <Walls onSubmit={handleFormSubmit} /> */}
-          <Button onClick={handleToggle}>
-            {showWalls ? '- Hide Walls' : '+ Show Walls'}
+          <Button onClick={handleFrameToggle}>
+            {showFrame ? '- Hide Frame' : '+ Show Frame'}
           </Button>
-          {showWalls && <Walls onSubmit={handleFormSubmit} />}
+          {showFrame && <Frame onSubmit={handleFrameFormSubmit} />}
+          <br></br>
+          <Button onClick={handleWallToggle}>
+            {showWall ? '- Hide Wall' : '+ Show Wall'}
+          </Button>
+          {showWall && <Wall onSubmit={handleFrameFormSubmit} />}
         </div>
         {/* <SidePanel open={drawerOpen} onClose={handleDrawerClose} wallLength={wallLength} studCount={studCount} studCost={studCost} /> */}
       </div>

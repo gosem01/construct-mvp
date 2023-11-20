@@ -1,5 +1,5 @@
 import React from 'react';
-import { Typography, Button } from '@mui/material';
+import { Typography, Button, Divider } from '@mui/material';
 
 function SidePanel({ wallLength, studCount, studCost, submissions, onRemove }) {
     const totalCost = submissions.reduce((total, { cost }) => total + cost, 0);
@@ -9,17 +9,21 @@ function SidePanel({ wallLength, studCount, studCost, submissions, onRemove }) {
     <div style={{ overflowY: 'scroll'}}>
         <div style={{ overflowY: 'auto', height: '600px'}}>
             {submissions.map(({ length, count, cost, quantity }, index) => (
-            <div style={{ borderBottom: '1px solid black'}} key={index}>
-                <Typography variant="h6" color="primary">
-                Wall Length: {length}
-                <br/>
-                Studs:  {count}
-                <br/> 
-                Cost:  $ {cost}
-                <br/>
-                QTY: {quantity}
-                </Typography>
-                <Button onClick={() => onRemove(index)}>Remove</Button>
+            <div class="statsContainer" style={{ borderBottom: '1px solid black', display: "flex"}} key={index}>
+                <div class='productImage' style={{ paddingTop: "20px" }}><img src="/images/2x4primestud.png"></img></div>
+                <div class='projectStats'>
+                    <Typography variant="h6" color="primary">
+                    Wall Length: {length}
+                    <br/>
+                    Studs:  {count}
+                    <br/> 
+                    Cost:  $ {cost}
+                    <br/>
+                    QTY: {quantity}
+                    </Typography>
+                    <Button onClick={() => onRemove(index)}>Remove</Button>
+                </div>
+                {/* <Button onClick={() => onRemove(index)}>Remove</Button> */}
             </div>
             ))}
         </div>

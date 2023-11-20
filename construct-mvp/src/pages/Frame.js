@@ -1,16 +1,9 @@
 import React, { useState } from 'react';
 import { TextField, Button, FormControl, Typography } from '@mui/material';
-// import { makeStyles } from '@mui/styles';
 import { Select, MenuItem } from '@mui/material';
 import { calcStudCount, calcStudCost } from '../utils/calc';
 
-// const useStyles = makeStyles((theme) => ({
-//   formControl: {
-//     marginBottom: theme.spacing(2),
-//   },
-// }));
-
-function Walls({ onSubmit }) {
+function Frame({ onSubmit }) {
 
   let count = 0;
   let cost = 0;
@@ -63,8 +56,8 @@ function Walls({ onSubmit }) {
     // };
   
     return (
-      <div>
-        <h1>Walls Page</h1>
+      <div id="frame">
+        {/* <h1>Walls Page</h1> */}
         <form onSubmit={handleSubmit}>
           <FormControl>
             <div class="form-item">
@@ -116,7 +109,7 @@ function Walls({ onSubmit }) {
             </div>
           </FormControl>
         </form>
-        {submitted && ( // Add this block
+        {submitted && (
         <Typography variant="h6" color="primary">
           For a wall {wallLength} feet long, you will need {studCount} studs. This will cost {studCost}. QTY: {quantity}
         </Typography>
@@ -125,4 +118,4 @@ function Walls({ onSubmit }) {
     );
   }
 
-export default Walls;
+export default Frame;

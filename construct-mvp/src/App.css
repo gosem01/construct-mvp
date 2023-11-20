@@ -41,3 +41,11 @@
   margin-bottom: 5px;
   width: 100%;
 }
+.productImage {
+  width: 30%
+}
+
+.projectStats {
+  float: right;
+  width: 70%;
+}
