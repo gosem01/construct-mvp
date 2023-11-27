@@ -31,7 +31,7 @@ function SidePanel({ wallLength, studCount, studCost, submissions, onRemove }) {
                     <br/> 
                     Cost:  ${cost}
                     <br/>
-                    QTY: {quantity}
+                    For {quantity} walls
                     </Typography>
                     <Button onClick={() => onRemove(index)}>Remove</Button>
                 </div>
