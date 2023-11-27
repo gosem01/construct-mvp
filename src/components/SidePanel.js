@@ -1,5 +1,7 @@
 import React from 'react';
 import { Typography, Button, Divider } from '@mui/material';
+import twobyfourimage from '../assets/2x4primestud.png';
+import drywallimage from '../assets/regulardrywall.png';
 
 function SidePanel({ wallLength, studCount, studCost, submissions, onRemove }) {
     const totalCost = submissions.reduce((total, { cost }) => total + cost, 0).toFixed(2);
@@ -11,7 +13,7 @@ function SidePanel({ wallLength, studCount, studCost, submissions, onRemove }) {
             {submissions.map(({ formType, productType, length, count, cost, quantity }, index) => (
             <div class="statsContainer" style={{ borderBottom: '1px solid black', display: "flex"}} key={index}>
                 <div class='productImage' style={{ paddingTop: "20px" }}>                    
-                    {formType === 'Frame' ? <img src="/images/2x4primestud.png" /> : <img src="/images/regulardrywall.png" />}
+                    {formType === 'Frame' ? <img src={twobyfourimage} /> : <img src={drywallimage} />}
                     <div class='productType'>
                         <Typography variant="h6" color="primary">
                         {productType}
