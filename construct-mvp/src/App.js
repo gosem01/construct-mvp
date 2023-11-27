@@ -109,21 +109,29 @@ if(localStorage.getItem('12x4x8MoldResistantDrywallBulkPrice') === null) {
 function App() {
 
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [wallLength, setWallLength] = useState(0);
-  const [studCount, setStudCount] = useState(0);
-  const [studCost, setStudCost] = useState(0);
+  // const [wallLength, setWallLength] = useState(0);
+  // const [studCount, setStudCount] = useState(0);
+  // const [studCost, setStudCost] = useState(0);
   const [showFrame, setShowFrame] = useState(true);
   const [showWall, setShowWall] = useState(false);
 
 
   const [submissions, setSubmissions] = useState([]);
 
-  const handleFrameFormSubmit = (length, count, cost, quantity) => {
-    setSubmissions(prevSubmissions => [...prevSubmissions, { length, count, cost, quantity }]);
+  // const handleFrameFormSubmit = (length, count, cost, quantity) => {
+  //   setSubmissions(prevSubmissions => [...prevSubmissions, { length, count, cost, quantity }]);
+  // };
+
+  // const handleWallFormSubmit = (length, count, cost, quantity) => {
+  //   setSubmissions(prevSubmissions => [...prevSubmissions, { length, count, cost, quantity }]);
+  // };
+
+  const handleFrameFormSubmit = (newSubmission) => {
+    setSubmissions(prevSubmissions => [...prevSubmissions, newSubmission]);
   };
 
-  const handleWallFormSubmit = (length, count, cost, quantity) => {
-    setSubmissions(prevSubmissions => [...prevSubmissions, { length, count, cost, quantity }]);
+  const handleWallFormSubmit = (newSubmission) => {
+    setSubmissions(prevSubmissions => [...prevSubmissions, newSubmission]);
   };
 
   const handleRemove = (index) => {
@@ -151,14 +159,14 @@ function App() {
         <div style={{ display: 'block' }}>
           {/* <Walls onSubmit={handleFormSubmit} /> */}
           <Button onClick={handleFrameToggle}>
-            {showFrame ? '- Hide Frame' : '+ Show Frame'}
+            {showFrame ? '- Hide Studs' : '+ Show Studs'}
           </Button>
           {showFrame && <Frame onSubmit={handleFrameFormSubmit} />}
           <br></br>
           <Button onClick={handleWallToggle}>
-            {showWall ? '- Hide Wall' : '+ Show Wall'}
+            {showWall ? '- Hide Drywall' : '+ Show Drywall'}
           </Button>
-          {showWall && <Wall onSubmit={handleFrameFormSubmit} />}
+          {showWall && <Wall onSubmit={handleWallFormSubmit} />}
         </div>
         {/* <SidePanel open={drawerOpen} onClose={handleDrawerClose} wallLength={wallLength} studCount={studCount} studCost={studCost} /> */}
       </div>
