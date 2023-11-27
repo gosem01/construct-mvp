@@ -20,7 +20,7 @@ function Wall({ onSubmit }) {
   const [width, setWidth] = useState('');
   const [wallHeight, setWallHeight] = useState('');
   const [wallLength, setWallLength] = useState('');
-  const [drywallPanelType, setDrywallPanelType] = useState(0);
+  const [drywallPanelType, setDrywallPanelType] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [menuText, setMenuText] = useState('');
   let [studCount, setStudCount] = useState(0);
@@ -179,12 +179,12 @@ function Wall({ onSubmit }) {
                 // onChange={handleDrywallPanelTypeChange}
                 onChange={(event, child) => {
                   console.log("printing event of drywall panel type change")
-                  if (child) {
+                  // if (child) {
                     console.log(child.props.children);
                     handleMenuTextChange(child.props.children);
                     console.log("printing event of drywall panel type change IF STATEMENT INNER CHILD")
                     console.log(menuText)
-                  }
+                  // }
                   handleDrywallPanelTypeChange(event);
                 }}
                 displayEmpty
