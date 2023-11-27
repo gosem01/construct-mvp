@@ -20,6 +20,7 @@ function Frame({ onSubmit }) {
   const [studCost, setStudCost] = useState(0);
   const [quantity, setQuantity] = useState(0);
   const [studType, setStudType] = useState(0);
+  const [menuText, setMenuText] = useState('');
 
   if(studType == 8){
     price = localStorage.getItem('TwoByFourByEightStudPrice');
@@ -53,6 +54,10 @@ function Frame({ onSubmit }) {
 
   const handleQTYChange = (event) => {
     setQuantity(Number(event.target.value));
+  };
+
+  const handleMenuTextChange = (menuText) => {
+    setMenuText(menuText);
   };
 
     const handleSubmit = (event) => {
@@ -128,9 +133,11 @@ function Frame({ onSubmit }) {
       // setStudCost(cost);
       console.log(count)
       console.log(cost)
+      console.log("MENU TEXT BEFORE Submission object: " + menuText)
     
       const newSubmission = {
         formType: 'Frame',
+        productType: menuText,
         length: wallLength,
         count: count,
         cost: cost,
@@ -140,6 +147,8 @@ function Frame({ onSubmit }) {
       setStudCount(count);
       setStudCost(cost);
       console.log("Quantity: " + quantity);
+      console.log("Text from selected stud is: " + menuText)
+      console.log("MENU TEXT AFTER Submission object: " + menuText)
       onSubmit(newSubmission);
     };
   
@@ -172,7 +181,13 @@ function Frame({ onSubmit }) {
           <Select
             value={height}
             // onChange={handleHeightChange}
-            onChange={(event) => {
+            onChange={(event, child) => {
+              if (child) {
+                console.log(child.props.children);
+                handleMenuTextChange(child.props.children);
+                console.log(menuText)
+              }
+
               handleHeightChange(event);
               handleStudTypeChange(event);
             }}
@@ -183,9 +198,9 @@ function Frame({ onSubmit }) {
             <MenuItem value="">
               <em>Stud height</em>
             </MenuItem>
-            <MenuItem value={8}>2 in. x 4 in. x 8 ft.</MenuItem>
-            <MenuItem value={10}>2 in. x 4 in. x 10 ft.</MenuItem>
-            <MenuItem value={12}>2 in. x 4 in. x 12 ft.</MenuItem>
+            <MenuItem value={8}>2"x4"x8'</MenuItem>
+            <MenuItem value={10}>2"x4"x10'</MenuItem>
+            <MenuItem value={12}>2"x4"x12'</MenuItem>
           </Select>
           </div>
           <div class="form-item">

@@ -8,11 +8,16 @@ function SidePanel({ wallLength, studCount, studCost, submissions, onRemove }) {
     <aside style={{ display: 'inline-block', float: 'right', padding: '20px', width: '450px', height: '600px', backgroundColor: '#f5f5f5' }}>
     <div style={{ overflowY: 'scroll'}}>
         <div style={{ overflowY: 'auto', height: '600px'}}>
-            {submissions.map(({ formType, length, count, cost, quantity }, index) => (
+            {submissions.map(({ formType, productType, length, count, cost, quantity }, index) => (
             <div class="statsContainer" style={{ borderBottom: '1px solid black', display: "flex"}} key={index}>
                 <div class='productImage' style={{ paddingTop: "20px" }}>                    
                     {formType === 'Frame' ? <img src="/images/2x4primestud.png" /> : <img src="/images/regulardrywall.png" />}
+                    <div class='productType'>
+                        <Typography variant="h6" color="primary">
+                        {productType}
+                        </Typography>
                     </div>
+                </div>
                         {/* <div class='productImage' style={{ paddingTop: "20px" }}>
                             {formType === 'Frame' ? <img src="/images/2x4primestud.png" /> : <img src="/images/regulardrywall.png" />}
                         </div> */}

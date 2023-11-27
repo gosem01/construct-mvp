@@ -22,11 +22,13 @@ function Wall({ onSubmit }) {
   const [wallLength, setWallLength] = useState('');
   const [drywallPanelType, setDrywallPanelType] = useState(0);
   const [submitted, setSubmitted] = useState(false);
+  const [menuText, setMenuText] = useState('');
   let [studCount, setStudCount] = useState(0);
   let [studCost, setStudCost] = useState(0);
   let [quantity, setQuantity] = useState(0);
   let [dryWallPanelCount, setDryWallPanelCount] = useState(0);
   let [dryWallPanelCost, setDryWallPanelCost] = useState(0);
+  
 
   if(drywallPanelType == 0){
         drywallHeight = 4;
@@ -98,6 +100,10 @@ function Wall({ onSubmit }) {
     setQuantity(Number(event.target.value));
   };
 
+  const handleMenuTextChange = (menuText) => {
+    setMenuText(menuText);
+  };
+
     // const handleWallSubmit = (event) => {
     //   event.preventDefault();
     //   setSubmitted(true);
@@ -137,6 +143,7 @@ function Wall({ onSubmit }) {
       
         const newSubmission = {
           formType: 'Wall',
+          productType: menuText,
           length: wallLength,
           count: dryWallPanelCount,
           cost: dryWallPanelCost,
@@ -146,6 +153,7 @@ function Wall({ onSubmit }) {
         setDryWallPanelCount(dryWallPanelCount);
         setDryWallPanelCost(dryWallPanelCost);
         console.log("Quantity: " + quantity);
+        console.log("Text from selected drywall is: " + menuText)
         onSubmit(newSubmission);
       };
 
@@ -168,24 +176,33 @@ function Wall({ onSubmit }) {
             <div class="form-item">
                 <Select
                 value={drywallPanelType}
-                onChange={handleDrywallPanelTypeChange}
+                // onChange={handleDrywallPanelTypeChange}
+                onChange={(event, child) => {
+                  console.log("printing event of drywall panel type change")
+                  if (child) {
+                    console.log(child.props.children);
+                    handleMenuTextChange(child.props.children);
+                    console.log("printing event of drywall panel type change IF STATEMENT INNER CHILD")
+                    console.log(menuText)
+                  }
+                  handleDrywallPanelTypeChange(event);
+                }}
                 displayEmpty
                 inputProps={{ 'aria-label': 'Without label' }}
                 fullWidth
             >
-                
                 <MenuItem value="">
                 <em>Drywall Type</em>
                 </MenuItem>
-                <MenuItem value={0}>Regular 3/8 in. x 4 ft. x 8 ft.</MenuItem>
-                <MenuItem value={1}>Regular 1/4 in. x 4 ft. x 8 ft.</MenuItem>
-                <MenuItem value={2}>Fire Resistant 5/8 in. x 4 ft. x 8 ft.</MenuItem>
-                <MenuItem value={3}>Fire Resistant 5/8 in. x 4 ft. x 10 ft.</MenuItem>
-                <MenuItem value={4}>Fire Resistant 5/8 in. x 4 ft. x 12 ft.</MenuItem>
-                <MenuItem value={5}>Light Weight 1/2 in. x 4 ft. x 8 ft.</MenuItem>
-                <MenuItem value={6}>Light Weight 1/2 in. x 4 ft. x 10 ft.</MenuItem>
-                <MenuItem value={7}>Light Weight 1/2 in. x 4 ft. x 12 ft.</MenuItem>
-                <MenuItem value={8}>Mold Resistant 1/2 in. x 4 ft. x 8 ft.</MenuItem>
+                <MenuItem value={0}>3/8"x4'x8'</MenuItem>
+                <MenuItem value={1}>1/4"x4'x8'</MenuItem>
+                <MenuItem value={2}>Fire 5/8"x4'x8'</MenuItem>
+                <MenuItem value={3}>Fire 5/8"x4'x10'</MenuItem>
+                <MenuItem value={4}>Fire 5/8"x4'x12'</MenuItem>
+                <MenuItem value={5}>Light 1/2"x4'x8'</MenuItem>
+                <MenuItem value={6}>Light 1/2"x4'x10'</MenuItem>
+                <MenuItem value={7}>Light 1/2"x4'x12'</MenuItem>
+                <MenuItem value={8}>Mold 1/2"x4'x8'</MenuItem>
             </Select>
           </div>
           <div class="form-item">

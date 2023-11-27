@@ -32,7 +32,7 @@ if(localStorage.getItem('TwoByFourByTwelveStudBulkPrice') === null) {
 
 // fire resistant drywall 5/8 in. x 4 ft. x 8 ft.
 if(localStorage.getItem('58x4x8FireResistantDrywallPrice') === null) {
-  localStorage.setItem('58ByFourBy8FireResistantDrywallPrice', 15.41);
+  localStorage.setItem('58x4x8FireResistantDrywallPrice', 15.41);
 }
 if(localStorage.getItem('58x4x8FireResistantDrywallBulkPrice') === null) {
   localStorage.setItem('58x4x8FireResistantDrywallBulkPrice', 13.10);
